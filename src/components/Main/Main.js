@@ -3,9 +3,9 @@ import {useState, useEffect} from 'react';
 import Card from '../Card/Card';
 import edit from '../../images/edit.svg';
 import add from '../../images/+.svg';
-import api from '../../utils/Api';
+import api from '../../utils/api';
 
-function Main(props){
+function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}){
     const[userName, setUserName] = useState('');	
     const[userDescription, setUserDescription] = useState('');	
     const[userAvatar, setUserAvatar] = useState('');
@@ -13,8 +13,7 @@ function Main(props){
 
     useEffect(() => {
       api.getInitialData()
-        .then((data) => {
-          const[userData, cardsData] = data;
+        .then(([userData, cardsData]) => {
           setUserName(userData.name);
           setUserDescription(userData.about);
           setUserAvatar(userData.avatar);
@@ -31,20 +30,20 @@ function Main(props){
               <div className="profile__avatar-box">
                 <img className="profile__avatar" alt={userName} src={userAvatar} />
                 <button className="profile__img-avatar" 
-                onClick={props.onEditAvatar}/>
+                onClick={onEditAvatar}/>
               </div>
               <div className="profile__info">
                 <div className="profile__box">
                     <h1 className="profile__name">{userName}</h1>
                     <button className="profile__edit" type="button" 
-                    onClick={props.onEditProfile}>
+                    onClick={onEditProfile}>
                       <img className="profile__img-edit" src={edit} alt="Изменить" />
                     </button>
                 </div>
                 <p className="profile__description">{userDescription}</p>
               </div>
               <button className="profile__button" type="button" 
-              onClick={props.onAddPlace}>
+              onClick={onAddPlace}>
                 <img className="profile__img-button" src={add} alt="Добавить фото" />
               </button>
             </section>
@@ -54,7 +53,7 @@ function Main(props){
                   <Card 
                     key={card._id}
                     card={card}
-                    onCardClick={props.onCardClick} 
+                    onCardClick={onCardClick} 
                   />
                 )}  
               </ul>
