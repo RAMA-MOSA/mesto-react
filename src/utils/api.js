@@ -13,7 +13,7 @@ class Api {
             return Promise.reject(`Ошибка:${res.status}`);
         }
         return res.json();
-    };
+    };//ok
 
     setUserAvatar(data){
         return fetch(`${this._url}/users/me/avatar`, {
@@ -23,24 +23,32 @@ class Api {
                 avatar: data.avatar
             })
         }).then(this._handleResponse)
-    };
+    };//ok
 
-    deleteLike(data){
-        return fetch(`${this._url}/cards/likes/${data._id}`, {
+    changeLikeCardStatus(id, isLiked){
+        if(isLiked){
+            return this.deleteLike(id);
+        }else{
+            return this.addLike(id);
+        }
+    }//??
+
+    deleteLike(id){
+        return fetch(`${this._url}/cards/likes/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         }).then(this._handleResponse)
     };
 
-    addLike(data){
-        return fetch(`${this._url}/cards/likes/${data._id}`, {
+    addLike(id){
+        return fetch(`${this._url}/cards/likes/${id}`, {
             method: 'PUT',
             headers: this._headers,
         }).then(this._handleResponse)
     };
 
-    deleteCard(data){
-        return fetch(`${this._url}/cards/${data._id}`, {
+    deleteCard(id){
+        return fetch(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         }).then(this._handleResponse)

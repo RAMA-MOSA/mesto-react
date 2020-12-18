@@ -1,8 +1,8 @@
 import React from 'react';
 
-function ImagePopup({card, onClose}){
+function ImagePopup({card, onClose, isOpen}){
     return(
-        <section className={`popup popup-image ${card.link && 'popup_opened'}`}>
+        <section className={`popup popup-image ${card && isOpen ? 'popup_opened' : ''}`}>
           <div className="popup__window">
             <img className="popup__img" src={`${card.link}`} alt={`${card.name}`} />
             <p className="popup__caption">{card.name}</p>

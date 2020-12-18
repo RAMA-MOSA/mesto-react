@@ -23,6 +23,8 @@
 @import url(./blocks/element/element.css);
 @import url(./blocks/element/__photo/element__photo.css);
 @import url(./blocks/element/__trash/element__trash.css);
+@import url(./blocks/element/__trash/_on/element__trash_on.css);
+@import url(./blocks/element/__trash/_none/element__trash_none.css);
 @import url(./blocks/element/__box/element__box.css);
 @import url(./blocks/element/__caption/element__caption.css);
 @import url(./blocks/element/__like-box/element__like-box.css);
