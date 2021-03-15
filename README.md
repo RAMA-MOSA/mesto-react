@@ -25,3 +25,10 @@
 * Webpack
 * React JS
 * Functional Components
+
+## Инструкция по установке:
+```
+git clone https://github.com/RAMA-MOSA/mesto-react.git
+npm install
+npm start
+```
